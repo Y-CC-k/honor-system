@@ -123,7 +123,7 @@
   }
   els.queryScore = function (k) { return document.getElementById(k === "A" ? "scoreA" : k === "B" ? "scoreB" : k === "C" ? "scoreC" : "scoreD"); };
 
-  // ---- 渲染排行榜 ------------------------------------------------------
+  // ---- 渲染排行榜（原版結構）----------------------------------------------
   function renderOrder(order) {
     var root = els.list;
     root.innerHTML = "";
@@ -134,33 +134,31 @@
     cols.forEach(function (col) {
       var g = groupData(order, col.name);
       var rows = g && g.stu_orders ? g.stu_orders : [];
-      var section = document.createElement("div");
-      section.className = "rank-group";
+      var panel = document.createElement("div");
+      panel.className = "panel " + col.color;
       var head = document.createElement("div");
-      head.className = "rank-head";
-      head.innerHTML =
-        '<span class="rank-color-dot" style="background:var(--color-' + col.cssVar + ')"></span>' +
-        '<span class="rank-color-name">' + esc(col.name) + '</span>';
-      section.appendChild(head);
-
+      head.className = "head";
+      panel.appendChild(head);
       var list = document.createElement("div");
-      list.className = "rank-list";
       rows.forEach(function (s, i) {
         var rank = i + 1;
-        var cls = rank === 1 ? "gold" : rank === 2 ? "silver" : rank === 3 ? "bronze" : "other";
         var row = document.createElement("div");
         row.className = "ranking";
+        row.style.backgroundImage = "url(assets/bk-" + (rank < 10 ? "0" : "") + rank + ".svg)";
         row.innerHTML =
-          '<div class="rank-badge ' + cls + '">' + rank + '</div>' +
-          '<div class="rank-info">' +
+          '<div class="sp"></div>' +
+          '<div class="who">' +
             '<p class="ranking_name">' + esc(s.stu_name) + "</p>" +
             '<p class="ranking_id_num">' + esc(s.stu_id) + "</p>" +
           "</div>" +
-          '<div class="rank-point">' + esc(s.point) + "</div>";
+          '<div class="num">' + esc(s.point) + "</div>";
         list.appendChild(row);
       });
-      section.appendChild(list);
-      root.appendChild(section);
+      var foot = document.createElement("div");
+      foot.className = "foot";
+      panel.appendChild(list);
+      panel.appendChild(foot);
+      root.appendChild(panel);
     });
   }
 

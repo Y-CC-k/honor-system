@@ -1,262 +1,96 @@
 /* ==========================================================================
-   榮譽積點管理系統 — 美化版樣式
-   無建置步驟，純 CSS。原色系保留（英文/讀經/閱讀/跑步/榮譽）
+   榮譽積點管理系統 — 原站樣式保留版
+   參考原站 static/css/main.8b705911.css 中 Search/排行榜相關規則
    ========================================================================== */
-:root {
-  --bg: #140a0a;
-  --panel: rgba(34, 16, 16, 0.65);
-  --panel-border: rgba(255, 255, 255, 0.08);
-  --text: #f5f5f5;
-  --text-dim: #b8a8a8;
-  --accent: #ffd166;
-  --accent-glow: rgba(255, 209, 102, 0.35);
-
-  /* 原站分數色系 */
-  --color-A: #7ecbff;   /* 英文 / 讀經 */
-  --color-B: #b6f37c;   /* 閱讀 */
-  --color-C: #ffd75e;   /* 跑步 */
-  --color-D: #ff9d6c;   /* 榮譽 */
-
-  --radius: 18px;
-  --transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-* { box-sizing: border-box; }
 html, body, #app {
-  margin: 0;
+  display: flex;
+  flex: 1;
   height: 100%;
-  overflow: hidden;
-  background: var(--bg);
-  color: var(--text);
-  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  overflow-y: hidden;
+  margin: 0;
+  background: #351111;
+  font-family: "Microsoft JhengHei", "PMingLiU", sans-serif;
 }
-#app { display: flex; flex-direction: column; }
+#app { width: 100%; position: absolute; }
 
-h1, h2, .shell-main, .stu-name, .card-tag, .ranking_name {
-  font-family: "Titillium Web", "Noto Sans TC", sans-serif;
-}
+/* 隱藏輸入框（原版：opacity:0 + autofocus，RFID 讀卡機＝鍵盤） */
+#cardForm { position: absolute; }
+#keyInput { opacity: 0; border: none; pointer-events: none; }
 
-/* ---------- 標題列 ---------- */
-.shell-header {
-  height: 72px;
+/* 頂部學生資訊（原版 scoring_user） */
+.scoring_user {
+  background: url(assets/topbackground.svg) top / 100% auto no-repeat;
+  padding: 2% 2% 1%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 40px;
-  background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, transparent 100%);
-  border-bottom: 1px solid var(--panel-border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(10px);
 }
-.shell-brand { display: flex; align-items: center; gap: 14px; }
-.shell-logo {
-  width: 42px; height: 42px; border-radius: 11px;
-  background: linear-gradient(135deg, var(--accent), var(--color-D));
-  box-shadow: 0 0 24px rgba(255, 209, 102, 0.45);
-  display: grid; place-items: center; font-size: 24px;
+.scoring_user .user_img { width: 25%; }
+.scoring_user .user_img img { width: 95%; }
+.scoring_user .user_info { width: 75%; }
+.user_name {
+  background: radial-gradient(ellipse at bottom, #000, transparent, transparent);
+  -webkit-background-clip: text; background-clip: text;
+  color: #091d55;
+  font-size: 6vw; margin-bottom: .5em; font-weight: 700;
 }
-.shell-title .shell-main { font-size: 25px; font-weight: 900; letter-spacing: 1px; margin: 0; color: #fff; }
-.shell-title .shell-sub { font-size: 12px; color: var(--text-dim); margin: 0; font-family: "Noto Sans TC", sans-serif; }
-.shell-status { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-dim); }
-.shell-status .dot {
-  width: 7px; height: 7px; border-radius: 50%; background: var(--color-C);
-  box-shadow: 0 0 10px var(--color-C);
-  animation: pulse 2s infinite;
+.user_id_num {
+  -webkit-background-clip: text; background-clip: text;
+  color: #46b59b; font-size: 2vw; margin-left: 1em;
 }
-@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
 
-/* ---------- 隱藏輸入框 ---------- */
-.card-form { position: absolute; opacity: 0; pointer-events: none; }
-#keyInput { border: none; }
+/* 分數格（原版 .score） */
+.score {
+  padding: 1vw 1vw 5vw 15vw !important;
+  font-size: 3vw;
+  font-family: "Arial Black", Arial, sans-serif;
+  color: #ff0;
+  text-shadow: 2px 2px 0 #eb452b, 4px 4px 6px #040404;
+}
 
-/* ---------- 卡片通用 ---------- */
-.card {
-  background: var(--panel);
-  border: 1px solid var(--panel-border);
-  border-radius: var(--radius);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.45);
-  animation: fadeIn var(--transition) both;
+/* 排行榜主區（原版 .scoring） */
+.scoring { background: #351111; padding: 20px 0; display: flex; min-height: 74vh; }
+.scoring > .panel { width: 25%; padding: 0 2px; box-sizing: border-box; }
+.panel .head {
+  background-position: 0 0; background-size: 100% auto; background-repeat: no-repeat;
+  text-align: center; min-height: 30vh;
 }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-.card-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 24px;
-  border-bottom: 1px solid var(--panel-border);
+.panel.blueA  .head { background-image: url(assets/scoring-blue_eng.svg); }
+.panel.blue   .head { background-image: url(assets/scoring-blue.svg); }
+.panel.red    .head { background-image: url(assets/scoring-red.svg); }
+.panel.yellow .head { background-image: url(assets/scoring-yellow.svg); }
+.panel.green  .head { background-image: url(assets/scoring-green.svg); }
+.panel .foot {
+  background-position: 0 100%; background-size: 100% auto; background-repeat: no-repeat;
+  margin-top: -10px; min-height: 6vh;
 }
-.card-tag {
-  font-family: "Titillium Web", sans-serif;
-  font-size: 14px; font-weight: 700;
-  color: var(--accent);
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-.card-right { color: var(--text-dim); font-size: 12px; }
+.panel.blueA  .foot { background-image: url(assets/scoring-blue_eng.svg); }
+.panel.blue   .foot { background-image: url(assets/scoring-blue.svg); }
+.panel.red    .foot { background-image: url(assets/scoring-red.svg); }
+.panel.yellow .foot { background-image: url(assets/scoring-yellow.svg); }
+.panel.green  .foot { background-image: url(assets/scoring-green.svg); }
 
-/* ---------- 學生資訊卡 ---------- */
-.student-card { flex: 0 0 380px; }
-.student-card .card-head { justify-content: flex-start; gap: 14px; }
-.card-avatar-wrap {
-  width: 64px; height: 64px; border-radius: 16px;
-  overflow: hidden; border: 2px solid rgba(255,255,255,0.12);
-  background: #000;
-}
-.student-card .card-body { padding: 24px; display: flex; flex-direction: column; gap: 10px; }
-.stu-name {
-  font-size: 42px; font-weight: 900; margin: 0;
-  color: #fff;
-  background: linear-gradient(135deg, #fff, var(--color-A));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  letter-spacing: 1px;
-}
-.stu-meta {
-  display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-dim);
-}
-.stu-meta .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--accent); }
-.stu-meta .value { font-family: "Titillium Web", sans-serif; font-weight: 700; color: #fff; }
-.score-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin-top: 6px;
-}
-.score-item {
-  border-radius: 12px;
-  padding: 12px 14px;
-  font-family: "Titillium Web", sans-serif;
-  font-weight: 900;
-  position: relative; overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.06);
-  background: rgba(0,0,0,0.25);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.score-item:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
-.score-label {
-  font-size: 11px; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;
-}
-.score-num {
-  font-size: 30px; line-height: 1;
-}
-.score-A { color: var(--color-A); border-color: rgba(126,203,255,0.25); }
-.score-B { color: var(--color-B); border-color: rgba(182,243,124,0.25); }
-.score-C { color: var(--color-C); border-color: rgba(255,215,94,0.25); }
-.score-D { color: var(--color-D); border-color: rgba(255,157,108,0.25); }
-
-/* ---------- 排行榜卡 ---------- */
-.leaderboard-card { flex: 1; }
-.leaderboard-card .card-body { padding: 0; display: flex; flex-direction: column; }
-.rankings {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 16px 24px 24px;
-  overflow-y: auto;
-}
+/* 個別名次列（原版 .ranking / .ranking_bk / .num_bk） */
 .ranking {
+  margin: 10px 3%;
   display: flex; align-items: center;
-  border-radius: 12px;
-  padding: 8px 14px;
-  background: rgba(0,0,0,0.2);
-  border: 1px solid rgba(255,255,255,0.04);
-  transition: all 0.25s;
-  animation: rankFade 0.5s both;
+  background-position: center center; background-size: 100% auto; background-repeat: no-repeat;
 }
-@keyframes rankFade { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: translateX(0); } }
-.ranking:hover {
-  border-color: rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.04);
-  transform: translateX(4px);
+.ranking > .sp { width: 16%; min-height: 5vw; }
+.ranking > .who { width: 50%; }
+.ranking > .num {
+  width: 30%;
+  background: url(assets/num-bk.svg) 0 50% / 92% auto no-repeat;
+  font-weight: 700; font-size: 1.5vw;
+  padding: 10px 0 10px 20px; box-sizing: border-box; text-align: left;
 }
-.rank-badge {
-  width: 34px; height: 34px; border-radius: 50%;
-  display: grid; place-items: center;
-  font-family: "Titillium Web", sans-serif;
-  font-weight: 900; font-size: 14px;
-  flex: 0 0 34px;
-  color: #111;
-}
-.rank-badge.gold { background: linear-gradient(135deg, #ffd700, #ffb300); }
-.rank-badge.silver { background: linear-gradient(135deg, #c0c0c0, #a8a8a8); }
-.rank-badge.bronze { background: linear-gradient(135deg, #cd7f32, #b87333); }
-.rank-badge.other { background: rgba(255,255,255,0.08); color: var(--text-dim); border: 1px dashed rgba(255,255,255,0.1); }
-.rank-info { flex: 1; min-width: 0; padding: 0 12px; }
-.ranking_name {
-  font-size: 16px; font-weight: 700; margin: 0 0 2px; color: #fff;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.ranking_id_num {
-  font-size: 11px; color: var(--text-dim); margin: 0;
-}
-.rank-point {
-  font-family: "Titillium Web", sans-serif; font-weight: 800;
-  font-size: 18px; color: var(--accent);
-  flex: 0 0 70px; text-align: right;
-}
+.ranking_name { margin: 0; font-size: 20.2px; line-height: 20px; font-weight: 700; color: #fff; }
+.ranking_id_num { margin: 2px 0 0; font-size: 12px; color: #ddd; }
 
-/* ---------- 排行榜分組標頭 ---------- */
-.rank-group { margin-bottom: 14px; animation: rankFade 0.5s both; }
-.rank-head {
-  display: flex; align-items: center; gap: 8px;
-  padding: 8px 0 4px; font-size: 13px; font-weight: 800;
-  font-family: "Titillium Web", sans-serif;
-  color: var(--text-dim); letter-spacing: 0.5px;
-}
-.rank-color-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  box-shadow: 0 0 8px currentColor;
-}
-.rank-list { display: flex; flex-direction: column; gap: 6px; }
+/* 跑馬燈（原版 banner） */
+#bannerWrap { text-align: center; }
+#bannerImg { width: 100%; }
 
-/* ---------- 底部跑馬燈 ---------- */
-.banner-shell {
-  height: 42px;
-  overflow: hidden;
-  border-top: 1px solid var(--panel-border);
-  background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 100%);
-  position: relative;
-}
-.banner-track {
-  display: flex;
-  gap: 60px;
-  animation: marquee 20s linear infinite;
-  height: 42px; align-items: center;
-}
-.banner-slide {
-  flex: 0 0 auto; height: 34px; display: grid; place-items: center;
-  opacity: 0.9;
-}
-.banner-slide img { height: 30px; width: auto; display: block; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5)); }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-/* ---------- 狀態提示 ---------- */
-.toast {
-  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
-  padding: 10px 18px; border-radius: 30px;
-  background: rgba(0,0,0,0.75); border: 1px solid var(--panel-border);
-  color: #fff; font-size: 13px; z-index: 200;
-  backdrop-filter: blur(10px); pointer-events: none;
-  opacity: 0; transition: opacity 0.3s;
-}
-.toast.show { opacity: 1; }
-
-/* ---------- 空狀態 ---------- */
-.empty-state {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  height: 60vh; color: var(--text-dim); gap: 12px;
-}
-.empty-state .emoji { font-size: 48px; opacity: 0.5; }
-
-/* ---------- 響應式 ---------- */
-@media (max-width: 900px) {
-  .shell-main { flex-direction: column; height: auto; min-height: 60vh; padding: 12px; gap: 12px; }
-  .student-card { flex: none; height: 320px; }
-  .leaderboard-card { height: 42vh; }
-  .rankings { padding: 10px; }
-  .score-grid { grid-template-columns: 1fr 1fr; }
-  .shell-header { padding: 0 16px; height: 56px; }
-  .shell-main .shell-main { font-size: 20px; }
+/* 狀態提示 */
+.source-tag {
+  position: fixed; right: 6px; bottom: 4px; font-size: 11px; color: #888;
+  z-index: 9; background: rgba(0,0,0,.35); padding: 2px 6px; border-radius: 4px;
 }
