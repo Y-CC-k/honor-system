@@ -479,3 +479,181 @@ html, body, #app {
   .content-zone { flex-direction: column; gap: 8px; margin: 8px; height: calc(100% - 16px); }
   .left-zone, .right-zone { flex: none; height: 50%; }
 }
+
+/* ==========================================================================
+   液態玻璃 CTA 英雄區塊（淡色優雅風格）
+   ========================================================================== */
+.liquid-section {
+  position: relative;
+  z-index: 1;
+  padding: 32px 16px;
+  overflow: hidden;
+}
+
+.liquid-card {
+  position: relative;
+  padding: 44px 32px;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 0 40px rgba(116, 185, 255, 0.15),
+    0 0 70px rgba(16, 185, 129, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 0 25px rgba(255, 255, 255, 0.3),
+    0 14px 40px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.liquid-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.35) 100%
+  );
+  border-radius: 32px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section-title {
+  font-family: "Titillium Web", "Segoe UI", "Microsoft JhengHei", sans-serif;
+  font-size: clamp(20px, 2.4vw, 32px);
+  font-weight: 800;
+  color: #2d3436;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 2;
+}
+
+.section-subtitle {
+  font-family: "Segoe UI", "Microsoft JhengHei", "PingFang TC", sans-serif;
+  font-size: clamp(13px, 1vw, 16px);
+  color: #636e72;
+  margin: 0 0 24px 0;
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
+}
+
+.section-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 30px;
+  border-radius: 46px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 0 35px rgba(116, 185, 255, 0.35),
+    0 0 65px rgba(16, 185, 129, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 0 18px rgba(255, 255, 255, 0.4),
+    0 8px 24px rgba(0, 0, 0, 0.08);
+  font-family: "Titillium Web", "Segoe UI", "Microsoft JhengHei", sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  color: #2d3436;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  z-index: 3;
+}
+
+.section-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0) 55%
+  );
+  border-radius: 46px 46px 0 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.section-btn::after {
+  content: "";
+  position: absolute;
+  top: -70%;
+  left: -130%;
+  width: 260%;
+  height: 240%;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.45) 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.45) 75%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  animation: liquid-glow 5.5s ease-in-out infinite;
+}
+
+@keyframes liquid-glow {
+  0% { transform: translateX(-120%) translateY(-120%) rotate(45deg); opacity: 0; }
+  50% { transform: translateX(120%) translateY(120%) rotate(45deg); opacity: 0.55; }
+  100% { transform: translateX(-120%) translateY(-120%) rotate(45deg); opacity: 0; }
+}
+
+.section-btn:hover {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(116, 185, 255, 0.5);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 0 60px rgba(116, 185, 255, 0.55),
+    0 0 90px rgba(16, 185, 129, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 0 25px rgba(255, 255, 255, 0.4),
+    0 14px 36px rgba(0, 0, 0, 0.12);
+}
+.section-btn::after:hover {
+  animation-duration: 2.8s;
+  opacity: 0.8;
+}
+
+.section-btn:active {
+  transform: translateY(0) scale(0.97);
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 0 30px rgba(116, 185, 255, 0.3),
+    inset 0 2px 10px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.section-hint {
+  margin-top: 20px;
+  font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
+  font-size: 12px;
+  color: #b2bec3;
+  letter-spacing: 0.2px;
+  position: relative;
+  z-index: 2;
+}
