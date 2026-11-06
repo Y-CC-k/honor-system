@@ -61,9 +61,18 @@ html, body, #app {
   overflow: hidden;
 }
 
-/* 上區（佔 1 份，約 9%） */
+/* 上區：跑馬燈圖（僅顯示一張，不重複） */
 .top-zone {
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, transparent 100%);
+}
+.top-banner img {
+  max-width: 90%;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6));
 }
 
 /* 下區（佔 10 份，約 91%），內部左右分 1:3 */
@@ -218,28 +227,6 @@ html, body, #app {
 }
 .ranking_name { margin: 0; font-size: 20.2px; line-height: 20px; font-weight: 700; color: #fff; }
 .ranking_id_num { margin: 2px 0 0; font-size: 12px; color: #ddd; }
-
-/* ===== 底部跑馬燈（原版 banner） ===== */
-.banner-shell {
-  height: 42px;
-  overflow: hidden;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 100%);
-  position: relative;
-  flex-shrink: 0;
-}
-.banner-track {
-  display: flex;
-  gap: 60px;
-  animation: marquee 20s linear infinite;
-  height: 42px; align-items: center;
-}
-.banner-slide {
-  flex: 0 0 auto; height: 34px; display: grid; place-items: center;
-  opacity: 0.9;
-}
-.banner-slide img { height: 30px; width: auto; display: block; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5)); }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* 狀態提示 */
 .source-tag {

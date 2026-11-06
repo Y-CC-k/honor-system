@@ -173,23 +173,13 @@
     });
   }
 
-  // ---- 跑馬燈 ----------------------------------------------------------
-  var banners = [], bannerIdx = 0;
+  // ---- 跑馬燈（上區僅顯示一張，不重複）-----------------------------------
+  var banners = [];
   function renderBanners(list) {
     banners = list.map(function (b) { return String(b.banner_url || b.url || "").replace(/\\/g, "/"); });
-    var track = document.getElementById("bannerTrack");
-    track.innerHTML = "";
     if (!banners.length) return;
-    // 複製兩輪做無縫循環
-    var slides = banners.concat(banners).concat(banners);
-    slides.forEach(function (u) {
-      var slide = document.createElement("div");
-      slide.className = "banner-slide";
-      var img = document.createElement("img");
-      img.src = u; img.alt = "banner";
-      slide.appendChild(img);
-      track.appendChild(slide);
-    });
+    // 僅顯示第一張，不複製三輪
+    document.getElementById("bannerImg").src = banners[0];
   }
 
   // ---- 提示 ------------------------------------------------------------
