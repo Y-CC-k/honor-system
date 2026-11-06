@@ -331,7 +331,7 @@ html, body, #app {
   overflow: hidden;
 }
 .scoring > .panel {
-  padding: 0 2px;
+  padding: 0;
   box-sizing: border-box;
   flex: 1;
   min-width: 0;
