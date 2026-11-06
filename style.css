@@ -112,6 +112,63 @@ html, body, #app {
   color: #46b59b; font-size: 2vw; margin-left: 1em;
 }
 
+/* ===== 左區：查詢輸入欄（玻璃擬態） ===== */
+.query-box {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.query-box input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  font-family: "Titillium Web", "Noto Sans TC", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.query-box input::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+.query-box input:focus {
+  border-color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.2);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.3);
+}
+.query-box button {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  white-space: nowrap;
+}
+.query-box button:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.5);
+  transform: translateY(-1px);
+}
+.query-box button:active {
+  transform: translateY(0);
+  background: rgba(255,255,255,0.1);
+}
+
 /* 分數格（原版 .score） */
 .score {
   padding: 1vw 1vw 5vw 15vw !important;

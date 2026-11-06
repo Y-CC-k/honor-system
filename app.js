@@ -267,8 +267,28 @@
     input.value = "";
     input.focus();
   });
+
+  // 左區查詢輸入欄：按鈕與 Enter 鍵
+  var queryInput = document.getElementById("queryInput");
+  var queryBtn = document.getElementById("queryBtn");
+  if (queryInput && queryBtn) {
+    queryBtn.addEventListener("click", function () {
+      handleCard(queryInput.value.trim());
+      queryInput.value = "";
+      queryInput.focus();
+    });
+    queryInput.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleCard(queryInput.value.trim());
+        queryInput.value = "";
+        queryInput.focus();
+      }
+    });
+  }
+
   document.addEventListener("click", function () {
-    if (document.activeElement !== els.input) els.input.focus();
+    if (document.activeElement !== els.input && document.activeElement !== queryInput) els.input.focus();
   });
   // 載入完成後自動聚焦（RFID 讀卡機即可輸入）
   els.input.focus();
