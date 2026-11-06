@@ -293,16 +293,6 @@
   // 載入完成後自動聚焦（RFID 讀卡機即可輸入）
   els.input.focus();
 
-  // 重新整理按鈕
-  var refreshBtn = document.getElementById("refreshBtn");
-  if (refreshBtn) {
-    refreshBtn.addEventListener("click", function () {
-      refreshBtn.style.transform = "scale(0.95)";
-      setTimeout(function () { refreshBtn.style.transform = ""; }, 150);
-      getInitialData();
-    });
-  }
-
   getInitialData();
   setInterval(getInitialData, 18e5);
 })();
