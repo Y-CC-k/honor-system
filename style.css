@@ -331,7 +331,62 @@ html, body, #app {
   z-index: 200; background: rgba(0,0,0,.35); padding: 2px 6px; border-radius: 4px;
 }
 
-/* 響應式：手機改為上下堆疊 */
+/* ===== CTA 按鈕：玻璃擬態 Glassmorphism ===== */
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  
+  /* 玻璃擬態：半透明白底 */
+  background: rgba(255, 255, 255, 0.18);
+  
+  /* 極細白色邊框 */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  
+  /* 強背景模糊（磨砂玻璃） */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  
+  /* 軟陰影 */
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+  
+  /* 現代字體 */
+  font-family: "Titillium Web", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  user-select: none;
+  outline: none;
+  text-decoration: none;
+}
+
+.cta-button:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.25) inset;
+}
+
+.cta-button:active {
+  transform: translateY(0);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* 響應式：手機調整 */
 @media (max-width: 900px) {
   .content-zone { flex-direction: column; gap: 8px; margin: 8px; height: calc(100% - 16px); }
   .left-zone, .right-zone { flex: none; height: 50%; }
