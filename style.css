@@ -142,17 +142,17 @@ html, body, #app {
   text-shadow: 2px 2px 0 #eb452b, 4px 4px 6px #040404;
 }
 
-/* ===== 下區：四個排行榜面板平分（各 1/4）===== */
+/* ===== 下區：四個排行榜面板由左至右橫向平分（各 1/4）===== */
 .bottom-zone {
   flex: 10;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   overflow: hidden;
 }
 .scoring {
   background: #351111;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 100%;
   overflow: hidden;
 }
@@ -161,7 +161,7 @@ html, body, #app {
   padding: 0 2px;
   box-sizing: border-box;
   flex: 1;
-  min-height: 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -170,7 +170,7 @@ html, body, #app {
   background-position: 0 0; background-size: 100% auto; background-repeat: no-repeat;
   text-align: center;
   flex-shrink: 0;
-  min-height: 22vh;
+  min-height: 25vh;
 }
 .panel.blueA  .head { background-image: url(assets/scoring-blue_eng.svg); }
 .panel.blue   .head { background-image: url(assets/scoring-blue.svg); }
