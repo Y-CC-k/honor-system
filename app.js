@@ -46,12 +46,17 @@
   }
 
   // ---- 欄位 ------------------------------------------------------------
+  // 每個欄位對應原站的排行榜面板顏色與 SVG 背景圖：
+  //   英文/讀經 → blueA / scoring-blue_eng.svg
+  //   閱讀      → red   / scoring-red.svg
+  //   跑步      → green / scoring-green.svg
+  //   榮譽      → yellow/ scoring-yellow.svg
   var COLS = [
-    { name: "英文",  color: "blueA", cssVar: "A", scoreId: "scoreA", label: "英文 / 讀經", key: "readBook" },
-    { name: "讀經",  color: "blue",  cssVar: "A", scoreId: null,              label: "英文 / 讀經", key: "readBook" },
-    { name: "閱讀",  color: "red",   cssVar: "B", scoreId: "scoreB", label: "閱讀",            key: "read" },
-    { name: "跑步",  color: "green", cssVar: "C", scoreId: "scoreC", label: "跑步",            key: "run" },
-    { name: "榮譽",  color: "yellow",cssVar: "D", scoreId: "scoreD", label: "榮譽",            key: "honor" }
+    { name: "英文",  color: "blueA", scoreId: "scoreA", label: "英文 / 讀經", key: "readBook" },
+    { name: "讀經",  color: "blue",  scoreId: null,              label: "英文 / 讀經", key: "readBook" },
+    { name: "閱讀",  color: "red",   scoreId: "scoreB", label: "閱讀",            key: "read" },
+    { name: "跑步",  color: "green", scoreId: "scoreC", label: "跑步",            key: "run" },
+    { name: "榮譽",  color: "yellow",scoreId: "scoreD", label: "榮譽",            key: "honor" }
   ];
   function orderList(order) {
     if (Array.isArray(order)) return order;
@@ -60,6 +65,7 @@
       return typeof v === "object" && v !== null ? v : { act_group: k, stu_orders: [] };
     });
   }
+  // 依活動組名稱前綴比對（支援「跑步活動」匹配「跑步」、「榮譽積點」匹配「榮譽」）
   function groupData(order, name) {
     var l = orderList(order);
     for (var i = 0; i < l.length; i++) {
