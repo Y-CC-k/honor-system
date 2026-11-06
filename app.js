@@ -147,6 +147,7 @@
       panel.className = "panel " + col.color;
       var head = document.createElement("div");
       head.className = "head";
+      head.innerHTML = '<div class="panel-title">' + esc(col.name) + '</div>';
       panel.appendChild(head);
 
       var wrap = document.createElement("div");
