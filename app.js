@@ -127,7 +127,10 @@
     countTo(els.queryScore("C"), rec.run);
     countTo(els.queryScore("D"), rec.honor);
   }
-  els.queryScore = function (k) { return document.getElementById(k === "A" ? "scoreA" : k === "B" ? "scoreB" : k === "C" ? "scoreC" : "scoreD"); };
+  els.queryScore = function (k) {
+    var id = k === "A" ? "scoreA" : k === "B" ? "scoreB" : k === "C" ? "scoreC" : "scoreD";
+    return document.getElementById(id).querySelector(".score-value");
+  };
 
   // ---- 渲染排行榜（原版結構）----------------------------------------------
   function renderOrder(order) {

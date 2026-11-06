@@ -121,6 +121,59 @@ html, body, #app {
   text-shadow: 2px 2px 0 #eb452b, 4px 4px 6px #040404;
 }
 
+/* ===== 左區：個人分數卡片 UI/UX 美化 ===== */
+.score-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 6px;
+}
+.score-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 10px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  text-align: center;
+}
+.score-item:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+.score-item.score-A { border-color: rgba(126, 203, 255, 0.35); }
+.score-item.score-B { border-color: rgba(182, 243, 124, 0.35); }
+.score-item.score-C { border-color: rgba(255, 215, 94, 0.35); }
+.score-item.score-D { border-color: rgba(255, 157, 108, 0.45); }
+.score-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 4px;
+}
+.score-value {
+  font-family: "Titillium Web", "Arial Black", sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  line-height: 1;
+  color: #ffd166;
+  text-shadow: 0 0 12px rgba(255, 209, 102, 0.55);
+}
+
+/* 左區分數卡片顏色對應 */
+.score-item.score-A .score-value { color: #7ecbff; text-shadow: 0 0 12px rgba(126, 203, 255, 0.55); }
+.score-item.score-B .score-value { color: #b6f37c; text-shadow: 0 0 12px rgba(182, 243, 124, 0.55); }
+.score-item.score-C .score-value { color: #ffd75e; text-shadow: 0 0 12px rgba(255, 215, 94, 0.55); }
+.score-item.score-D .score-value { color: #ff9d6c; text-shadow: 0 0 12px rgba(255, 157, 108, 0.55); }
+
 /* ===== 右區：四個排行榜面板由左至右橫向平分（各 1/4，平均填滿右視窗寬度）===== */
 .right-zone .card-body {
   padding: 0;
