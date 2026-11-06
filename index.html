@@ -2,37 +2,96 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>榮譽積點管理系統</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;700;900&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div id="app">
-  <!-- 靠卡輸入（RFID 讀卡機 = 鍵盤輸入裝置），原版 inputmode=none + autofocus -->
-  <form id="cardForm">
-    <input id="keyInput" type="text" inputmode="none" autocomplete="off" maxlength="12">
+
+  <!-- ===== 頂部標題列 ===== -->
+  <header class="shell-header">
+    <div class="shell-brand">
+      <div class="shell-logo">🏆</div>
+      <div class="shell-title">
+        <div class="shell-main">榮譽積點管理系統</div>
+        <div class="shell-sub">榮譽積點排行榜大螢幕</div>
+      </div>
+    </div>
+    <div class="shell-status" id="shellStatus">
+      <span class="dot"></span><span class="txt">資料載入中…</span>
+    </div>
+  </header>
+
+  <!-- ===== 隱藏輸入框（RFID 讀卡機＝鍵盤輸入裝置） ===== -->
+  <form id="cardForm" class="card-form">
+    <input id="keyInput" type="text" inputmode="none" autocomplete="off" maxlength="12"
+           placeholder="請刷卡 / 輸入學號">
     <button type="submit" hidden></button>
   </form>
 
-  <!-- 學生資訊面板 -->
-  <div class="scoring_user">
-    <div class="user_img"><img id="userImg" src="assets/boy_01.svg" alt=""></div>
-    <div class="user_info">
-      <p class="user_name"><span id="stuName">　　　</span><span class="user_id_num" id="stuId">---</span></p>
-      <div class="score_row">
-        <div class="score A" id="scoreA" title="讀經/英文">0</div>
-        <div class="score B" id="scoreB" title="閱讀">0</div>
-        <div class="score C" id="scoreC" title="跑步">0</div>
-        <div class="score D" id="scoreD" title="榮譽">0</div>
+  <!-- ===== 主內容區 ===== -->
+  <main class="shell-main">
+
+    <!-- 學生個人資訊卡 -->
+    <section class="card student-card">
+      <div class="card-head">
+        <span class="card-tag">學生資訊</span>
+        <div class="card-avatar-wrap"><img id="userImg" src="assets/boy_01.svg" alt="avatar"></div>
       </div>
+      <div class="card-body">
+        <h1 id="stuName" class="stu-name">　</h1>
+        <div class="stu-meta">
+          <span class="label">學號</span>
+          <span id="stuId" class="value">---</span>
+        </div>
+        <div class="score-grid">
+          <div class="score-item score-A" id="scoreA">
+            <span class="score-label">英文 / 讀經</span>
+            <span class="score-num">0</span>
+          </div>
+          <div class="score-item score-B" id="scoreB">
+            <span class="score-label">閱讀</span>
+            <span class="score-num">0</span>
+          </div>
+          <div class="score-item score-C" id="scoreC">
+            <span class="score-label">跑步</span>
+            <span class="score-num">0</span>
+          </div>
+          <div class="score-item score-D" id="scoreD">
+            <span class="score-label">榮譽</span>
+            <span class="score-num">0</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 排行榜主區 -->
+    <section class="card leaderboard-card">
+      <div class="card-head">
+        <span class="card-tag">排行榜 Top 10</span>
+        <div class="card-right" id="leaderboardRight"></div>
+      </div>
+      <div class="card-body">
+        <div class="rankings" id="scoring"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== 底部跑馬燈 ===== -->
+  <div class="banner-shell">
+    <div class="banner-track" id="bannerTrack">
+      <div class="banner-slide"><img src="assets/banner-splash.svg" alt="banner"></div>
     </div>
   </div>
 
-  <!-- 排行榜欄位（動態） -->
-  <div class="scoring" id="scoring"></div>
+  <!-- 狀態提示（載入中 / 錯誤 / 樣本模式） -->
+  <div class="toast" id="toast"></div>
 
-  <!-- 跑馬燈 -->
-  <div id="bannerWrap" hidden><img id="bannerImg" alt=""></div>
 </div>
 <script src="config.js"></script>
 <script src="app.js"></script>

@@ -1,0 +1,24 @@
+{
+  "name": "honor-system",
+  "version": "1.0.0",
+  "description": "原站 `https://honor.iiv.tw/#/search?school_id=...`（React + CRA + 後端 `honor.backend.iiv.tw`） 的**公眾排行榜頁面重建**：純靜態前端（無 build step） + 資料改存 **Supabase**。",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Y-CC-k/honor-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Y-CC-k/honor-system/issues"
+  },
+  "homepage": "https://github.com/Y-CC-k/honor-system#readme",
+  "dependencies": {
+    "pg": "^8.23.1"
+  }
+}
