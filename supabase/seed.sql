@@ -40,9 +40,8 @@ from (values
 on conflict (school_student_school_id, school_student_stu_id) do nothing;
 
 -- 4. 插入積點記錄（每個學生在四個活動組都有點數，方便測試排行榜與個人查詢）
-insert into points (school_point_id, school_point_student_id, school_point_group_id, school_point_point)
+insert into points (school_point_student_id, school_point_group_id, school_point_point)
 select
-  gen_random_uuid(),
   st.school_student_id,
   g.school_group_id,
   s.pt_point
