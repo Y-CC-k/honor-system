@@ -1,15 +1,14 @@
 /* ==========================================================================
-   榮譽積點管理系統 — 原站樣式保留版
+   榮譽積點管理系統 — 淺色優雅版
    佈局：左右區塊 1:4
    左區：個人資訊卡（20%）
    右區：四個排行榜面板由左至右橫向平分（80%），平均填滿右視窗寬度
-   參考原站 static/css/main.8b705911.css 中 Search/排行榜相關規則
    ========================================================================== */
 html, body, #app {
   margin: 0;
   height: 100%;
   overflow: hidden;
-  background: #351111;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   font-family: "Microsoft JhengHei", "PMingLiU", sans-serif;
 }
 #app {
@@ -56,13 +55,13 @@ html, body, #app {
   flex-direction: column;
 }
 
-/* ===== 卡片通用 ===== */
+/* ===== 卡片通用（淡色優雅：白底 + 柔陰）===== */
 .card {
-  background: rgba(34, 16, 16, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  backdrop-filter: blur(16px);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -73,18 +72,18 @@ html, body, #app {
   align-items: center;
   justify-content: space-between;
   padding: 18px 24px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   flex-shrink: 0;
 }
 .card-tag {
   font-family: "Titillium Web", "Noto Sans TC", sans-serif;
-  font-size: 14px; font-weight: 700;
-  color: #ffd166;
+  font-size: 13px; font-weight: 700;
+  color: #636e72;
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
 
-/* ===== 左區：個人資訊卡（原版 scoring_user） ===== */
+/* ===== 左區：個人資訊卡 ===== */
 .left-zone .card-body {
   padding: 24px;
   gap: 10px;
@@ -92,64 +91,62 @@ html, body, #app {
   flex-direction: column;
 }
 .scoring_user {
-  background: url(assets/topbackground.svg) top / 100% auto no-repeat;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
   padding: 2% 2% 1%;
   display: flex;
   height: 100%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
 }
 .scoring_user .user_img { width: 25%; }
-.scoring_user .user_img img { width: 95%; }
+.scoring_user .user_img img { width: 95%; border-radius: 12px; }
 .scoring_user .user_info { width: 75%; display: flex; flex-direction: column; justify-content: center; }
 .user_name {
-  background: radial-gradient(ellipse at bottom, #000, transparent, transparent);
+  background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
   -webkit-background-clip: text; background-clip: text;
-  color: #091d55;
-  font-size: 6vw; margin-bottom: .5em; font-weight: 700;
+  color: transparent;
+  font-size: 5.5vw; margin-bottom: .4em; font-weight: 800;
 }
 .user_id_num {
-  -webkit-background-clip: text; background-clip: text;
-  color: #46b59b; font-size: 2vw; margin-left: 1em;
+  color: #b2bec3; font-size: 1.8vw; margin-left: 1em; font-weight: 600;
 }
 
-/* ===== 左區：查詢輸入欄（玻璃擬態） ===== */
+/* ===== 左區：查詢輸入欄（淡色玻璃擬態） ===== */
 .query-box {
   display: flex;
   gap: 8px;
   margin-bottom: 14px;
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 .query-box input {
   flex: 1;
   min-width: 0;
   padding: 10px 14px;
   border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: #ffffff;
+  border: 1px solid #dfe6e9;
+  background: rgba(255, 255, 255, 0.9);
+  color: #2d3436;
   font-family: "Titillium Web", "Noto Sans TC", sans-serif;
   font-size: 14px;
   font-weight: 600;
   outline: none;
   transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 .query-box input::placeholder {
-  color: rgba(255,255,255,0.5);
+  color: #b2bec3;
 }
 .query-box input:focus {
-  border-color: rgba(255,255,255,0.4);
-  background: rgba(255,255,255,0.2);
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.3);
+  border-color: #74b9ff;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px #74b9ff;
 }
 .query-box button {
   padding: 10px 18px;
   border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.3);
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid #74b9ff;
+  background: #74b9ff;
   color: #ffffff;
   font-family: "Titillium Web", sans-serif;
   font-size: 14px;
@@ -157,24 +154,24 @@ html, body, #app {
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
   white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(116, 185, 255, 0.3);
 }
 .query-box button:hover {
-  background: rgba(255,255,255,0.25);
-  border-color: rgba(255,255,255,0.5);
+  background: #0984e3;
   transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(116, 185, 255, 0.4);
 }
 .query-box button:active {
   transform: translateY(0);
-  background: rgba(255,255,255,0.1);
 }
 
-/* 分數格（原版 .score） */
+/* 分數格（淡色優雅：彩色卡片）*/
 .score {
   padding: 1vw 1vw 5vw 15vw !important;
   font-size: 3vw;
   font-family: "Arial Black", Arial, sans-serif;
-  color: #ff0;
-  text-shadow: 2px 2px 0 #eb452b, 4px 4px 6px #040404;
+  color: #2d3436;
+  font-weight: 900;
 }
 
 /* ===== 左區：個人分數卡片 UI/UX 美化 ===== */
@@ -191,28 +188,28 @@ html, body, #app {
   justify-content: center;
   padding: 14px 10px;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
   text-align: center;
 }
 .score-item:hover {
   transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
-.score-item.score-A { border-color: rgba(126, 203, 255, 0.35); }
-.score-item.score-B { border-color: rgba(182, 243, 124, 0.35); }
-.score-item.score-C { border-color: rgba(255, 215, 94, 0.35); }
-.score-item.score-D { border-color: rgba(255, 157, 108, 0.45); }
+.score-item.score-A { border-color: #74b9ff; }
+.score-item.score-B { border-color: #55efc4; }
+.score-item.score-C { border-color: #ffeaa7; }
+.score-item.score-D { border-color: #fab1a0; }
 .score-label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
+  color: #636e72;
   margin-bottom: 4px;
 }
 .score-value {
@@ -220,15 +217,11 @@ html, body, #app {
   font-weight: 900;
   font-size: 28px;
   line-height: 1;
-  color: #ffd166;
-  text-shadow: 0 0 12px rgba(255, 209, 102, 0.55);
 }
-
-/* 左區分數卡片顏色對應 */
-.score-item.score-A .score-value { color: #7ecbff; text-shadow: 0 0 12px rgba(126, 203, 255, 0.55); }
-.score-item.score-B .score-value { color: #b6f37c; text-shadow: 0 0 12px rgba(182, 243, 124, 0.55); }
-.score-item.score-C .score-value { color: #ffd75e; text-shadow: 0 0 12px rgba(255, 215, 94, 0.55); }
-.score-item.score-D .score-value { color: #ff9d6c; text-shadow: 0 0 12px rgba(255, 157, 108, 0.55); }
+.score-item.score-A .score-value { color: #0984e3; }
+.score-item.score-B .score-value { color: #00b894; }
+.score-item.score-C .score-value { color: #fdcb6e; }
+.score-item.score-D .score-value { color: #e17055; }
 
 /* ===== 右區：四個排行榜面板由左至右橫向平分（各 1/4，平均填滿右視窗寬度）===== */
 .right-zone .card-body {
@@ -236,7 +229,7 @@ html, body, #app {
   display: flex;
 }
 .scoring {
-  background: #351111;
+  background: rgba(255, 255, 255, 0.6);
   display: flex;
   flex-direction: row;
   height: 100%;
@@ -255,13 +248,13 @@ html, body, #app {
 /* 左右兩色區分：左邊兩個面板（英文、閱讀）冷色系 / 右邊兩個面板（跑步、榮譽）暖色系 */
 .scoring > .panel:nth-child(1),
 .scoring > .panel:nth-child(2) {
-  border: 1px solid rgba(126, 203, 255, 0.35);
-  box-shadow: inset 0 0 20px rgba(126, 203, 255, 0.15), 0 0 30px rgba(126, 203, 255, 0.25);
+  border: 1px solid rgba(116, 185, 255, 0.25);
+  box-shadow: inset 0 0 20px rgba(116, 185, 255, 0.08);
 }
 .scoring > .panel:nth-child(3),
 .scoring > .panel:nth-child(4) {
-  border: 1px solid rgba(255, 157, 108, 0.45);
-  box-shadow: inset 0 0 20px rgba(255, 157, 108, 0.15), 0 0 30px rgba(255, 157, 108, 0.25);
+  border: 1px solid rgba(255, 157, 108, 0.25);
+  box-shadow: inset 0 0 20px rgba(255, 157, 108, 0.08);
 }
 .panel .head {
   display: flex;
@@ -274,10 +267,9 @@ html, body, #app {
 .panel-title {
   font-family: "Titillium Web", sans-serif;
   font-weight: 800;
-  font-size: clamp(16px, 1.2rem, 22px);
+  font-size: clamp(15px, 1.1rem, 20px);
   letter-spacing: 0.04em;
-  color: #ffffff;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  color: #2d3436;
 }
 
 /* 名次列表區域：面板中間可滾動 */
@@ -287,24 +279,24 @@ html, body, #app {
   padding: 6px 0;
 }
 
-/* 個別名次列（UI/UX 框格美化） */
+/* 個別名次列（UI/UX 框格美化：淡色版） */
 .ranking {
   display: flex;
   align-items: center;
   margin: 6px 4%;
   padding: 10px 14px;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
   overflow: hidden;
 }
 .ranking:hover {
   transform: translateX(6px);
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 .ranking:not(:last-child) {
   margin-bottom: 8px;
@@ -318,40 +310,40 @@ html, body, #app {
   justify-content: center;
   font-family: "Titillium Web", sans-serif;
   font-weight: 900;
-  color: #111;
+  color: #636e72;
 }
 .medal {
   width: 40px; height: 40px;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-size: 18px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
-.medal.gold   { background: linear-gradient(135deg, #ffd700, #ffb300); color: #7a5c00; }
-.medal.silver { background: linear-gradient(135deg, #c0c0c0, #a8a8a8); color: #555; }
-.medal.bronze { background: linear-gradient(135deg, #cd7f32, #b87333); color: #5c3a1e; }
+.medal.gold   { background: linear-gradient(135deg, #ffeaa7, #fdcb6e); color: #d63031; }
+.medal.silver { background: linear-gradient(135deg, #dfe6e9, #b2bec3); color: #2d3436; }
+.medal.bronze { background: linear-gradient(135deg, #e17055, #d63031); color: #ffffff; }
 .medal.normal {
-  background: rgba(255,255,255,0.15);
-  color: #fff;
+  background: rgba(255,255,255,0.8);
+  color: #636e72;
   font-size: 16px;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid #dfe6e9;
 }
 
 /* 姓名與學號 */
 .who { flex: 1; min-width: 0; padding: 0 10px; }
 .ranking_name {
   margin: 0;
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.2;
   font-weight: 800;
-  color: #fff;
+  color: #2d3436;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   letter-spacing: -0.01em;
 }
 .ranking_id_num {
   margin: 2px 0 0;
   font-size: 11px;
-  color: #b8a8a8;
+  color: #b2bec3;
   letter-spacing: 0.04em;
 }
 
@@ -364,30 +356,28 @@ html, body, #app {
 .point {
   font-weight: 900;
   font-size: 19px;
-  color: #ffd166;
-  text-shadow: 0 0 12px rgba(255, 209, 102, 0.55);
+  color: #e17055;
 }
 
 /* 前三名特別樣式 */
-.ranking.rank-1 { border-color: rgba(255, 215, 0, 0.45); background: rgba(255, 215, 0, 0.12); }
-.ranking.rank-2 { border-color: rgba(192, 192, 192, 0.45); background: rgba(192, 192, 192, 0.08); }
-.ranking.rank-3 { border-color: rgba(205, 127, 50, 0.45); background: rgba(205, 127, 50, 0.08); }
+.ranking.rank-1 { border-color: #fdcb6e; background: rgba(253, 203, 110, 0.12); }
+.ranking.rank-2 { border-color: #b2bec3; background: rgba(178, 190, 195, 0.08); }
+.ranking.rank-3 { border-color: #e17055; background: rgba(225, 112, 85, 0.08); }
 
 /* 雙色背景條紋（偶數行稍深） */
 .ranking:nth-child(even) {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(0, 0, 0, 0.02);
 }
 .ranking:nth-child(even):hover {
-  background: rgba(255, 255, 255, 0.14);
+  background: #ffffff;
 }
 
 /* 狀態提示 */
 .source-tag {
-  position: fixed; right: 6px; bottom: 6px; font-size: 11px; color: #888;
-  z-index: 200; background: rgba(0,0,0,.35); padding: 2px 6px; border-radius: 4px;
+  position: fixed; right: 6px; bottom: 6px; font-size: 11px; color: #636e72;
+  z-index: 200; background: rgba(255, 255, 255, 0.8); padding: 2px 6px; border-radius: 4px;
+  border: 1px solid #dfe6e9;
 }
-
-
 
 /* 響應式：手機調整 */
 @media (max-width: 900px) {
