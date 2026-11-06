@@ -186,8 +186,9 @@
   function renderBanners(list) {
     banners = list.map(function (b) { return String(b.banner_url || b.url || "").replace(/\\/g, "/"); });
     if (!banners.length) return;
-    // 僅顯示第一張，不複製三輪
-    document.getElementById("bannerImg").src = banners[0];
+    var bannerImg = document.getElementById("bannerImg");
+    if (!bannerImg) return;  // 沒有跑馬燈元素就跳過
+    bannerImg.src = banners[0];
   }
 
   // ---- 提示 ------------------------------------------------------------
