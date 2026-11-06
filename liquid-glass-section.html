@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>液態玻璃 CTA 區塊 — 淺色優雅版</title>
+<style>
+  /* ================================
+     背景：淺色漸變，與 honour-system 主網站一致
+     ================================ */
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    font-family: "Segoe UI", "Microsoft JhengHei", "PingFang TC", sans-serif;
+    overflow: hidden;
+  }
+
+  /* 背景裝飾光暈：柔和淡色 */
+  body::before {
+    content: "";
+    position: absolute;
+    top: -25%;
+    left: -25%;
+    width: 70vw;
+    height: 70vw;
+    background: radial-gradient(circle, rgba(116, 185, 255, 0.12) 0%, transparent 70%);
+    filter: blur(110px);
+    z-index: 0;
+  }
+  body::after {
+    content: "";
+    position: absolute;
+    bottom: -25%;
+    right: -25%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+    filter: blur(110px);
+    z-index: 0;
+  }
+
+  /* ================================
+     液態玻璃 CTA 區塊容器
+     ================================ */
+  .liquid-section {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    padding: 40px 24px;
+    text-align: center;
+  }
+
+  /* 液態玻璃區塊背景卡 */
+  .liquid-card {
+    position: relative;
+    padding: 48px 40px;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow:
+      0 0 40px rgba(116, 185, 255, 0.2),
+      0 0 70px rgba(16, 185, 129, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 0 25px rgba(255, 255, 255, 0.3),
+      0 14px 40px rgba(0, 0, 0, 0.06);
+  }
+
+  /* 區塊背景：柔和漸變條紋 */
+  .liquid-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0.3) 100%
+    );
+    border-radius: 32px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ================================
+     頁標與副標題
+     ================================ */
+  .section-title {
+    font-family: "Segoe UI", "Microsoft JhengHei", "PingFang TC", sans-serif;
+    font-size: clamp(22px, 2.5vw, 34px);
+    font-weight: 800;
+    color: #2d3436;
+    margin: 0 0 12px 0;
+    letter-spacing: -0.02em;
+    position: relative;
+    z-index: 2;
+  }
+
+  .section-subtitle {
+    font-family: "Segoe UI", "Microsoft JhengHei", "PingFang TC", sans-serif;
+    font-size: clamp(14px, 1.1vw, 17px);
+    color: #636e72;
+    margin: 0 0 28px 0;
+    line-height: 1.6;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ================================
+     液態玻璃 CTA 按鈕
+     ================================ */
+  .liquid-btn {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 34px;
+    border-radius: 48px;
+
+    /* 液態玻璃：半透明白霧表面 */
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    /* 極細邊緣細節：淺色邊框 */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow:
+      /* 外層柔和霓虹發光（淡紫/淡藍） */
+      0 0 35px rgba(116, 185, 255, 0.4),
+      0 0 70px rgba(16, 185, 129, 0.2),
+      /* 內層高光與立體感 */
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 0 18px rgba(255, 255, 255, 0.4),
+      /* 柔和下陰 */
+      0 10px 26px rgba(0, 0, 0, 0.1);
+
+    font-family: "Titillium Web", "Segoe UI", "Microsoft JhengHei", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    color: #2d3436;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* 玻璃邊緣微細細節：頂部高光條 */
+  .liquid-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 45%;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0) 55%
+    );
+    border-radius: 48px 48px 0 0;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  /* 折射光澤：動態流動光帶（淡色版） */
+  .liquid-btn::after {
+    content: "";
+    position: absolute;
+    top: -70%;
+    left: -130%;
+    width: 260%;
+    height: 240%;
+    background: linear-gradient(
+      45deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.45) 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.45) 75%,
+      transparent 100%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    animation: liquid-glow 5.5s ease-in-out infinite;
+  }
+
+  @keyframes liquid-glow {
+    0% { transform: translateX(-120%) translateY(-120%) rotate(45deg); opacity: 0; }
+    50% { transform: translateX(120%) translateY(120%) rotate(45deg); opacity: 0.55; }
+    100% { transform: translateX(-120%) translateY(-120%) rotate(45deg); opacity: 0; }
+  }
+
+  /* 懸停狀態：霓虹強度提升，按鈕微凸 */
+  .liquid-btn:hover {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(116, 185, 255, 0.5);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow:
+      0 0 60px rgba(116, 185, 255, 0.55),
+      0 0 90px rgba(16, 185, 129, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 0 25px rgba(255, 255, 255, 0.4),
+      0 14px 36px rgba(0, 0, 0, 0.12);
+  }
+  .liquid-btn::after:hover {
+    animation-duration: 2.8s;
+    opacity: 0.8;
+  }
+
+  /* 按下狀態：下陷壓扁效果 */
+  .liquid-btn:active {
+    transform: translateY(0) scale(0.97);
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow:
+      0 0 30px rgba(116, 185, 255, 0.3),
+      inset 0 2px 10px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+
+  .btn-icon {
+    font-size: 18px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+  }
+
+  /* ================================
+     區塊底部說明文字
+     ================================ */
+  .section-hint {
+    margin-top: 22px;
+    font-family: "Segoe UI", "Microsoft JhengHei", "PingFang TC", sans-serif;
+    font-size: 12px;
+    color: #b2bec3;
+    letter-spacing: 0.2px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- 液態玻璃 CTA 區塊 -->
+  <section class="liquid-section">
+    <div class="liquid-card">
+      <h1 class="section-title">榮譽積點管理系統</h1>
+      <p class="section-subtitle">
+        靠卡輸入學號，即時查看個人積點與排行榜。<br>
+        即刻體驗智慧積點管理大螢幕。
+      </p>
+
+      <a href="#" class="liquid-btn">
+        <span class="btn-icon">✨</span>
+        開始查詢
+      </a>
+    </div>
+
+    <div class="section-hint">
+      液態玻璃 UI • 淺色優雅版 • 霓虹發光動態光帶
+    </div>
+  </section>
+
+</body>
+</html>
