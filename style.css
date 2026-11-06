@@ -1,0 +1,96 @@
+/* 重建版樣式 — 移植自原站 static/css/main.8b705911.css 中 Search/排行榜相關規則 */
+html, body, #app {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  overflow-y: hidden;
+  margin: 0;
+  background: #351111;
+  font-family: "Microsoft JhengHei", "PMingLiU", sans-serif;
+}
+#app { width: 100%; position: absolute; }
+
+/* 靠卡輸入（不可見，永遠聚焦 — 原版行為：#keyInput opacity:0 + autofocus） */
+#cardForm { position: absolute; }
+#keyInput { opacity: 0; border: none; pointer-events: none; }
+
+/* 頂部學生資訊 */
+.scoring_user {
+  background: url(assets/topbackground.svg) top / 100% auto no-repeat;
+  padding: 2% 2% 1%;
+  display: flex;
+}
+.scoring_user .user_img { width: 25%; }
+.scoring_user .user_img img { width: 95%; }
+.scoring_user .user_info { width: 75%; }
+.user_name {
+  background: radial-gradient(ellipse at bottom, #000, transparent, transparent);
+  -webkit-background-clip: text; background-clip: text;
+  color: #091d55;
+  font-size: 6vw; margin-bottom: .5em; font-weight: 700;
+}
+.user_id_num {
+  -webkit-background-clip: text; background-clip: text;
+  color: #46b59b; font-size: 2vw; margin-left: 1em;
+}
+.score_row { display: flex; flex-wrap: wrap; margin: -8px -12px 8px; }
+.score_row > div { width: 50%; padding: 8px 12px; box-sizing: border-box; }
+.score {
+  padding: 1vw 1vw 5vw 15vw;
+  font-size: 3vw; font-family: "Arial Black", Arial, sans-serif;
+  color: #ff0;
+  text-shadow: 2px 2px 0 #eb452b, 4px 4px 6px #040404;
+}
+.score.A, .score.E { color: #7ecbff; }
+.score.B { color: #b6f37c; }
+.score.C { color: #ffd75e; }
+.score.D { color: #ff9d6c; }
+
+/* 排行榜主區 */
+.scoring { background: #351111; padding: 20px 0; display: flex; min-height: 74vh; }
+.scoring > .panel { width: 25%; padding: 0 2px; box-sizing: border-box; }
+.panel .head {
+  background-position: 0 0; background-size: 100% auto; background-repeat: no-repeat;
+  text-align: center; min-height: 30vh;
+}
+.panel.blueA  .head { background-image: url(assets/scoring-blue_eng.svg); }
+.panel.blue   .head { background-image: url(assets/scoring-blue.svg); }
+.panel.red    .head { background-image: url(assets/scoring-red.svg); }
+.panel.yellow .head { background-image: url(assets/scoring-yellow.svg); }
+.panel.green  .head { background-image: url(assets/scoring-green.svg); }
+.panel .foot {
+  background-position: 0 100%; background-size: 100% auto; background-repeat: no-repeat;
+  margin-top: -10px; min-height: 6vh;
+}
+.panel.blueA  .foot { background-image: url(assets/scoring-blue_eng.svg); }
+.panel.blue   .foot { background-image: url(assets/scoring-blue.svg); }
+.panel.red    .foot { background-image: url(assets/scoring-red.svg); }
+.panel.yellow .foot { background-image: url(assets/scoring-yellow.svg); }
+.panel.green  .foot { background-image: url(assets/scoring-green.svg); }
+
+/* 個別名次列 — 名次徽章 bk-01~bk-10 作為背景 */
+.ranking {
+  margin: 10px 3%;
+  display: flex; align-items: center;
+  background-position: center center; background-size: 100% auto; background-repeat: no-repeat;
+}
+.ranking > .sp { width: 16%; min-height: 5vw; }
+.ranking > .who { width: 50%; }
+.ranking > .num {
+  width: 30%;
+  background: url(assets/num-bk.svg) 0 50% / 92% auto no-repeat;
+  font-weight: 700; font-size: 1.5vw;
+  padding: 10px 0 10px 20px; box-sizing: border-box; text-align: left;
+}
+.ranking_name { margin: 0; font-size: 20.2px; line-height: 20px; font-weight: 700; color: #fff; }
+.ranking_id_num { margin: 2px 0 0; font-size: 12px; color: #ddd; }
+
+/* 跑馬燈 */
+#bannerWrap { text-align: center; }
+#bannerImg { width: 100%; }
+
+/* 資料來源標記 */
+.source-tag {
+  position: fixed; right: 6px; bottom: 4px; font-size: 11px; color: #888;
+  z-index: 9; background: rgba(0,0,0,.35); padding: 2px 6px; border-radius: 4px;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>榮譽積點管理系統</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <!-- 靠卡輸入（RFID 讀卡機 = 鍵盤輸入裝置），原版 inputmode=none + autofocus -->
+  <form id="cardForm">
+    <input id="keyInput" type="text" inputmode="none" autocomplete="off" maxlength="12">
+    <button type="submit" hidden></button>
+  </form>
+
+  <!-- 學生資訊面板 -->
+  <div class="scoring_user">
+    <div class="user_img"><img id="userImg" src="assets/boy_01.svg" alt=""></div>
+    <div class="user_info">
+      <p class="user_name"><span id="stuName">　　　</span><span class="user_id_num" id="stuId">---</span></p>
+      <div class="score_row">
+        <div class="score A" id="scoreA" title="讀經/英文">0</div>
+        <div class="score B" id="scoreB" title="閱讀">0</div>
+        <div class="score C" id="scoreC" title="跑步">0</div>
+        <div class="score D" id="scoreD" title="榮譽">0</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 排行榜欄位（動態） -->
+  <div class="scoring" id="scoring"></div>
+
+  <!-- 跑馬燈 -->
+  <div id="bannerWrap" hidden><img id="bannerImg" alt=""></div>
+</div>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

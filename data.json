@@ -1,0 +1,74 @@
+{
+  "_note": "實測擷取樣本：GET /api/Activity/Order 與 /api/Banner/GetAll，school_id=283b80a6-a69e-4848-a5df-e3162d21f7f2（離線 fallback 用）",
+  "order": [
+    {
+      "act_group_id": "7994d087-359f-43ed-bdf8-4ef248c4951f",
+      "act_group": "英文",
+      "stu_orders": [
+        { "stu_id": "110047", "stu_name": "蔡O昱", "point": 49 },
+        { "stu_id": "110011", "stu_name": "林O勳", "point": 24 },
+        { "stu_id": "109011", "stu_name": "許O卉", "point": 19 },
+        { "stu_id": "109002", "stu_name": "陳O安", "point": 16 },
+        { "stu_id": "110021", "stu_name": "許O堯", "point": 16 },
+        { "stu_id": "109006", "stu_name": "林O宇", "point": 15 },
+        { "stu_id": "109005", "stu_name": "黃O綸", "point": 14 },
+        { "stu_id": "109053", "stu_name": "趙O瑒", "point": 14 },
+        { "stu_id": "110013", "stu_name": "王O渲", "point": 12 },
+        { "stu_id": "110016", "stu_name": "陳O茹", "point": 12 }
+      ]
+    },
+    {
+      "act_group_id": "ca696c82-a67e-4009-a715-7b6cddbf580e",
+      "act_group": "閱讀",
+      "stu_orders": [
+        { "stu_id": "109023", "stu_name": "劉O晨", "point": 595 },
+        { "stu_id": "110016", "stu_name": "陳O茹", "point": 194 },
+        { "stu_id": "109032", "stu_name": "劉O寧", "point": 147 },
+        { "stu_id": "109016", "stu_name": "謝O汝", "point": 138 },
+        { "stu_id": "111021", "stu_name": "楊O侖", "point": 83 },
+        { "stu_id": "113037", "stu_name": "陳O真", "point": 80 },
+        { "stu_id": "109029", "stu_name": "許O欣", "point": 77 },
+        { "stu_id": "110008", "stu_name": "呂O燊", "point": 77 },
+        { "stu_id": "111005", "stu_name": "陳O杰", "point": 75 },
+        { "stu_id": "109041", "stu_name": "陳O安", "point": 65 }
+      ]
+    },
+    {
+      "act_group_id": "95530ca5-3634-401b-9f52-7b9e700bf355",
+      "act_group": "跑步活動",
+      "stu_orders": [
+        { "stu_id": "111004", "stu_name": "張O廷", "point": 254 },
+        { "stu_id": "114049", "stu_name": "周O倢", "point": 245 },
+        { "stu_id": "113003", "stu_name": "張O綱", "point": 233 },
+        { "stu_id": "111036", "stu_name": "林O榛", "point": 214 },
+        { "stu_id": "113017", "stu_name": "許O姮", "point": 208 },
+        { "stu_id": "113019", "stu_name": "紀O笙", "point": 199 },
+        { "stu_id": "111014", "stu_name": "陳O澦", "point": 198 },
+        { "stu_id": "111022", "stu_name": "楊O豊", "point": 197 },
+        { "stu_id": "111044", "stu_name": "張O穎", "point": 185 },
+        { "stu_id": "111034", "stu_name": "陳O箖", "point": 184 }
+      ]
+    },
+    {
+      "act_group_id": "36e4216e-cca2-4029-9dd1-3b019306518b",
+      "act_group": "榮譽積點",
+      "stu_orders": [
+        { "stu_id": "111058", "stu_name": "紀O穎", "point": 130 },
+        { "stu_id": "112017", "stu_name": "邱O琁", "point": 97 },
+        { "stu_id": "112007", "stu_name": "王O和", "point": 96 },
+        { "stu_id": "112026", "stu_name": "鄧O浩", "point": 96 },
+        { "stu_id": "110016", "stu_name": "陳O茹", "point": 90 },
+        { "stu_id": "110032", "stu_name": "蔡O萱", "point": 89 },
+        { "stu_id": "110047", "stu_name": "蔡O昱", "point": 88 },
+        { "stu_id": "111051", "stu_name": "鄧O睿", "point": 87 },
+        { "stu_id": "111017", "stu_name": "洪O歆", "point": 84 },
+        { "stu_id": "111010", "stu_name": "黃O勛", "point": 83 }
+      ]
+    }
+  ],
+  "banners": [
+    { "banner_id": "2ee055a1-5976-4e03-b47d-942d53dd2bb1",
+      "banner_url": "assets/banner-splash.svg",
+      "banner_order": 1, "banner_status": true }
+  ]
+}
