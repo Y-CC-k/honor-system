@@ -196,49 +196,52 @@
     var t = els.toast;
     var msg = mode === "live" ? "資料來源：Supabase (即時)"
       : mode === "sample" ? "資料來源：內建樣本 data.json"
+      : mode === "error" ? "資料來源：Supabase 錯誤，請確認資料庫已設定"
+      : mode === "notfound" ? "查無此卡號/學號"
       : "尚未設定 Supabase，顯示內建樣本";
     t.textContent = msg;
     t.classList.add("show");
     setTimeout(function () { t.classList.remove("show"); }, 2500);
   }
 
-  // ---- 靠卡查詢 --------------------------------------------------------
+  // ---- 靠卡查詢（僅使用資料庫資料）----------------------------------------
   function handleCard(cardId) {
     if (!cardId) return;
-    if (!sbReady()) { getSampleStudent(cardId); return; }
+    if (!sbReady()) {
+      tagSource("error");
+      clearStudent();
+      return;
+    }
     sbRPC("get_stu_points", { p_card: cardId })
-      .then(function (d) { if (d) showStudent(d); })
-      .catch(function () {});
-  }
-  function getSampleStudent(cardId) {
-    loadSample().then(function (s) {
-      var r = { readBook: 0, read: 0, run: 0, honor: 0 }, stu = null;
-      (s.order || []).forEach(function (g) {
-        (g.stu_orders || []).forEach(function (row) {
-          if (row.stu_id === cardId) {
-            stu = { stu_id: row.stu_id, stu_name: row.stu_name };
-            var k = (g.act_group.indexOf("英文") === 0 || g.act_group.indexOf("讀經") === 0) ? "readBook"
-                  : g.act_group.indexOf("閱讀") === 0 ? "read"
-                  : g.act_group.indexOf("跑步") === 0 ? "run" : "honor";
-            r[k] += row.point;
-          }
-        });
+      .then(function (d) {
+        if (d && d.student) showStudent(d);
+        else {
+          tagSource("notfound");
+          clearStudent();
+        }
+      })
+      .catch(function () {
+        tagSource("error");
+        clearStudent();
       });
-      if (stu) showStudent({ student: stu, stu_points: r });
-    }).catch(function () {});
+  }
+  function clearStudent() {
+    els.name.textContent = "　";
+    els.id.textContent = "---";
+    els.queryScore("A").textContent = "0";
+    els.queryScore("B").textContent = "0";
+    els.queryScore("C").textContent = "0";
+    els.queryScore("D").textContent = "0";
   }
 
-  // ---- 初始資料 --------------------------------------------------------
+  // ---- 初始資料（僅使用資料庫）--------------------------------------------
   var gOrder = null;
   function getInitialData() {
     randomAvatar();
     if (!sbReady()) {
-      tagSource("none");
-      loadSample().then(function (s) {
-        gOrder = s.order || [];
-        renderOrder(gOrder);
-        renderBanners(s.banners || []);
-      }).catch(function () {});
+      tagSource("error");
+      renderOrder([]);
+      renderBanners([]);
       return;
     }
     sbRPC("get_activity_order", { p_school_id: schoolId })
@@ -250,12 +253,9 @@
       })
       .then(function (bs) { renderBanners(bs || []); })
       .catch(function () {
-        return loadSample().then(function (s) {
-          gOrder = s.order || [];
-          renderOrder(gOrder);
-          renderBanners(s.banners || []);
-          tagSource("sample");
-        });
+        tagSource("error");
+        renderOrder([]);
+        renderBanners([]);
       });
   }
 
