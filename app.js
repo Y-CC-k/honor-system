@@ -145,6 +145,9 @@
       var head = document.createElement("div");
       head.className = "head";
       panel.appendChild(head);
+
+      var wrap = document.createElement("div");
+      wrap.className = "rank-list-wrap";
       var list = document.createElement("div");
       rows.forEach(function (s, i) {
         var rank = i + 1;
@@ -160,9 +163,11 @@
           '<div class="num">' + esc(s.point) + "</div>";
         list.appendChild(row);
       });
+      wrap.appendChild(list);
+      panel.appendChild(wrap);
+
       var foot = document.createElement("div");
       foot.className = "foot";
-      panel.appendChild(list);
       panel.appendChild(foot);
       root.appendChild(panel);
     });
