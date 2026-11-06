@@ -1,8 +1,8 @@
 /* ==========================================================================
    榮譽積點管理系統 — 原站樣式保留版
-   佈局：上下區塊 1:10
-   上區：個人資訊卡（靠卡查詢顯示）
-   下區：四個排行榜面板由左至右橫向平分（英文/閱讀/跑步/榮譽）
+   佈局：左右區塊 1:4
+   左區：個人資訊卡（20%）
+   右區：四個排行榜面板由左至右橫向平分（80%）
    參考原站 static/css/main.8b705911.css 中 Search/排行榜相關規則
    ========================================================================== */
 html, body, #app {
@@ -23,44 +23,84 @@ html, body, #app {
 #cardForm { position: absolute; }
 #keyInput { opacity: 0; border: none; pointer-events: none; }
 
-/* ===== 主內容區：上下 1:10 ===== */
+/* ===== 主內容區：左右 1:4 ===== */
 .shell-main {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  flex: 1;
   overflow: hidden;
 }
 
-/* 上區（佔 1 份，約 9%）：個人資訊卡（佔滿寬度） */
-.top-zone {
+.content-zone {
   flex: 1;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 16px;
+  flex-direction: row;
+  gap: 12px;
+  margin: 12px;
+  height: calc(100% - 24px);
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, transparent 100%);
 }
 
-/* 個人資訊卡（原版 scoring_user） */
-.student-card {
+/* 左區：個人資訊卡（1/5 = 20%） */
+.left-zone {
   flex: 1;
-  min-height: 0;
-  margin: 0;
-  height: auto;
-  max-width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
-.student-card .card-head { justify-content: flex-start; gap: 14px; }
-.student-card .card-body { padding: 12px 16px; gap: 8px; display: flex; flex-direction: column; }
+
+/* 右區：四個排行榜面板（4/5 = 80%） */
+.right-zone {
+  flex: 4;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== 卡片通用 ===== */
+.card {
+  background: rgba(34, 16, 16, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+.card-tag {
+  font-family: "Titillium Web", "Noto Sans TC", sans-serif;
+  font-size: 14px; font-weight: 700;
+  color: #ffd166;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ===== 左區：個人資訊卡（原版 scoring_user） ===== */
+.left-zone .card-body {
+  padding: 24px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
 .scoring_user {
   background: url(assets/topbackground.svg) top / 100% auto no-repeat;
   padding: 2% 2% 1%;
   display: flex;
   height: 100%;
 }
-.scoring_user .user_img { width: 22%; }
+.scoring_user .user_img { width: 25%; }
 .scoring_user .user_img img { width: 95%; }
-.scoring_user .user_info { width: 78%; display: flex; flex-direction: column; justify-content: center; }
+.scoring_user .user_info { width: 75%; display: flex; flex-direction: column; justify-content: center; }
 .user_name {
   background: radial-gradient(ellipse at bottom, #000, transparent, transparent);
   -webkit-background-clip: text; background-clip: text;
@@ -81,12 +121,10 @@ html, body, #app {
   text-shadow: 2px 2px 0 #eb452b, 4px 4px 6px #040404;
 }
 
-/* ===== 下區：四個排行榜面板由左至右橫向平分（各 1/4）===== */
-.bottom-zone {
-  flex: 10;
+/* ===== 右區：四個排行榜面板由左至右橫向平分（各 1/4）===== */
+.right-zone .card-body {
+  padding: 0;
   display: flex;
-  flex-direction: row;
-  overflow: hidden;
 }
 .scoring {
   background: #351111;
@@ -158,8 +196,8 @@ html, body, #app {
   z-index: 200; background: rgba(0,0,0,.35); padding: 2px 6px; border-radius: 4px;
 }
 
-/* 響應式：手機調整 */
+/* 響應式：手機改為上下堆疊 */
 @media (max-width: 900px) {
-  .top-zone { padding: 6px 12px; }
-  .student-card .card-body { padding: 8px 12px; }
+  .content-zone { flex-direction: column; gap: 8px; margin: 8px; height: calc(100% - 16px); }
+  .left-zone, .right-zone { flex: none; height: 50%; }
 }

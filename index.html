@@ -15,11 +15,11 @@
     <button type="submit" hidden></button>
   </form>
 
-  <!-- ===== 主內容區：上下 1:10 ===== -->
+  <!-- ===== 主內容區：左右 1:4 ===== -->
   <main class="shell-main">
-    <!-- 上區（佔 1/11 ≈ 9%）：個人資訊卡（靠卡查詢顯示） -->
-    <div class="top-zone">
-      <section class="card student-card">
+    <div class="content-zone">
+      <!-- 左區：個人資訊卡（1/5 = 20%） -->
+      <section class="card left-zone">
         <div class="card-head">
           <span class="card-tag">學生資訊</span>
           <div class="card-avatar-wrap"><img id="userImg" src="assets/boy_01.svg" alt="avatar"></div>
@@ -34,11 +34,16 @@
           </div>
         </div>
       </section>
-    </div>
 
-    <!-- 下區（佔 10/11 ≈ 91%）：四個排行榜面板平分（不分左右區塊） -->
-    <div class="bottom-zone">
-      <div class="scoring" id="scoring"></div>
+      <!-- 右區：四個排行榜面板由左至右橫向平分（4/5 = 80%） -->
+      <section class="card right-zone">
+        <div class="card-head">
+          <span class="card-tag">排行榜 Top 10</span>
+        </div>
+        <div class="card-body">
+          <div class="scoring" id="scoring"></div>
+        </div>
+      </section>
     </div>
   </main>
 
