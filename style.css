@@ -1,31 +1,137 @@
 /* ==========================================================================
    榮譽積點管理系統 — 原站樣式保留版
+   佈局：上下區塊 1:10，下區內部左右區塊 1:3
    參考原站 static/css/main.8b705911.css 中 Search/排行榜相關規則
    ========================================================================== */
 html, body, #app {
-  display: flex;
-  flex: 1;
-  height: 100%;
-  overflow-y: hidden;
   margin: 0;
+  height: 100%;
+  overflow: hidden;
   background: #351111;
   font-family: "Microsoft JhengHei", "PMingLiU", sans-serif;
 }
-#app { width: 100%; position: absolute; }
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 頂部標題列（固定高度，不參與 1:10 比例） */
+.shell-header {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, transparent 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  flex-shrink: 0;
+}
+.shell-brand { display: flex; align-items: center; gap: 14px; }
+.shell-logo {
+  width: 42px; height: 42px; border-radius: 11px;
+  background: linear-gradient(135deg, #ffd166, #ff9d6c);
+  box-shadow: 0 0 24px rgba(255, 209, 102, 0.45);
+  display: grid; place-items: center; font-size: 24px;
+}
+.shell-title .shell-main { font-size: 25px; font-weight: 900; letter-spacing: 1px; margin: 0; color: #fff; }
+.shell-title .shell-sub { font-size: 12px; color: #b8a8a8; margin: 0; font-family: "Noto Sans TC", sans-serif; }
+.shell-status { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #b8a8a8; }
+.shell-status .dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #ffd75e;
+  box-shadow: 0 0 10px #ffd75e;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
 
 /* 隱藏輸入框（原版：opacity:0 + autofocus，RFID 讀卡機＝鍵盤） */
 #cardForm { position: absolute; }
 #keyInput { opacity: 0; border: none; pointer-events: none; }
 
-/* 頂部學生資訊（原版 scoring_user） */
+/* ===== 主內容區：上下 1:10 ===== */
+.shell-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* 上區（佔 1 份，約 9%） */
+.top-zone {
+  flex: 1;
+}
+
+/* 下區（佔 10 份，約 91%），內部左右分 1:3 */
+.bottom-zone {
+  display: flex;
+  flex: 10;
+  overflow: hidden;
+}
+
+/* 左區：學生資訊卡（佔 1 份 = 25%） */
+.student-card {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 右區：排行榜（佔 3 份 = 75%） */
+.leaderboard-card {
+  flex: 3;
+  min-width: 0;
+}
+
+/* ===== 卡片通用 ===== */
+.card {
+  background: rgba(34, 16, 16, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+  margin: 12px;
+  height: calc(100% - 24px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+.card-tag {
+  font-family: "Titillium Web", "Noto Sans TC", sans-serif;
+  font-size: 14px; font-weight: 700;
+  color: #ffd166;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.card-body {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== 學生資訊卡（原版 scoring_user） ===== */
+.student-card .card-head { justify-content: flex-start; gap: 14px; }
+.student-card .card-body { padding: 24px; gap: 10px; }
 .scoring_user {
   background: url(assets/topbackground.svg) top / 100% auto no-repeat;
   padding: 2% 2% 1%;
   display: flex;
+  height: 100%;
 }
 .scoring_user .user_img { width: 25%; }
 .scoring_user .user_img img { width: 95%; }
-.scoring_user .user_info { width: 75%; }
+.scoring_user .user_info { width: 75%; display: flex; flex-direction: column; justify-content: center; }
 .user_name {
   background: radial-gradient(ellipse at bottom, #000, transparent, transparent);
   -webkit-background-clip: text; background-clip: text;
@@ -46,9 +152,17 @@ html, body, #app {
   text-shadow: 2px 2px 0 #eb452b, 4px 4px 6px #040404;
 }
 
-/* 排行榜主區（原版 .scoring） */
-.scoring { background: #351111; padding: 20px 0; display: flex; min-height: 74vh; }
-.scoring > .panel { width: 25%; padding: 0 2px; box-sizing: border-box; }
+/* ===== 排行榜主區（原版 .scoring） ===== */
+.leaderboard-card .card-body { padding: 0; }
+.scoring {
+  background: #351111;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+}
+.scoring > .panel { width: 100%; padding: 0 2px; box-sizing: border-box; flex-shrink: 0; }
 .panel .head {
   background-position: 0 0; background-size: 100% auto; background-repeat: no-repeat;
   text-align: center; min-height: 30vh;
@@ -85,12 +199,37 @@ html, body, #app {
 .ranking_name { margin: 0; font-size: 20.2px; line-height: 20px; font-weight: 700; color: #fff; }
 .ranking_id_num { margin: 2px 0 0; font-size: 12px; color: #ddd; }
 
-/* 跑馬燈（原版 banner） */
-#bannerWrap { text-align: center; }
-#bannerImg { width: 100%; }
+/* ===== 底部跑馬燈（原版 banner） ===== */
+.banner-shell {
+  height: 42px;
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 100%);
+  position: relative;
+  flex-shrink: 0;
+}
+.banner-track {
+  display: flex;
+  gap: 60px;
+  animation: marquee 20s linear infinite;
+  height: 42px; align-items: center;
+}
+.banner-slide {
+  flex: 0 0 auto; height: 34px; display: grid; place-items: center;
+  opacity: 0.9;
+}
+.banner-slide img { height: 30px; width: auto; display: block; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5)); }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* 狀態提示 */
 .source-tag {
-  position: fixed; right: 6px; bottom: 4px; font-size: 11px; color: #888;
-  z-index: 9; background: rgba(0,0,0,.35); padding: 2px 6px; border-radius: 4px;
+  position: fixed; right: 6px; bottom: 52px; font-size: 11px; color: #888;
+  z-index: 200; background: rgba(0,0,0,.35); padding: 2px 6px; border-radius: 4px;
+}
+
+/* 響應式：手機改為上下堆疊 */
+@media (max-width: 900px) {
+  .bottom-zone { flex-direction: column; }
+  .student-card, .leaderboard-card { flex: none; height: 50%; }
+  .shell-header { padding: 0 16px; height: 56px; }
 }

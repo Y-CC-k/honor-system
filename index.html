@@ -9,31 +9,68 @@
 <body>
 <div id="app">
 
-  <!-- 隱藏輸入框（RFID 讀卡機＝鍵盤輸入裝置），原版 inputmode=none + autofocus -->
+  <!-- 頂部標題列 -->
+  <header class="shell-header">
+    <div class="shell-brand">
+      <div class="shell-logo">🏆</div>
+      <div class="shell-title">
+        <div class="shell-main">榮譽積點管理系統</div>
+        <div class="shell-sub">榮譽積點排行榜大螢幕</div>
+      </div>
+    </div>
+    <div class="shell-status" id="shellStatus">
+      <span class="dot"></span><span class="txt">資料載入中…</span>
+    </div>
+  </header>
+
+  <!-- 隱藏輸入框（RFID 讀卡機＝鍵盤輸入裝置） -->
   <form id="cardForm">
     <input id="keyInput" type="text" inputmode="none" autocomplete="off" maxlength="12">
     <button type="submit" hidden></button>
   </form>
 
-  <!-- 學生資訊面板（原版 scoring_user） -->
-  <div class="scoring_user">
-    <div class="user_img"><img id="userImg" src="assets/boy_01.svg" alt=""></div>
-    <div class="user_info">
-      <p class="user_name"><span id="stuName">　　　</span><span class="user_id_num" id="stuId">---</span></p>
-      <div class="ant-row" style="margin: -8px -12px 8px;">
-        <div class="ant-col ant-col-12" style="padding: 8px 12px;"><div class="score E" id="scoreA" title="英文/讀經">0</div></div>
-        <div class="ant-col ant-col-12" style="padding: 8px 12px;"><div class="score B" id="scoreB" title="閱讀">0</div></div>
-        <div class="ant-col ant-col-12" style="padding: 8px 12px;"><div class="score C" id="scoreC" title="跑步">0</div></div>
-        <div class="ant-col ant-col-12" style="padding: 8px 12px;"><div class="score D" id="scoreD" title="榮譽">0</div></div>
-      </div>
+  <!-- ===== 主內容區：上下 1:10 ===== -->
+  <main class="shell-main">
+    <!-- 上區（佔 1/11 ≈ 9%） -->
+    <div class="top-zone"></div>
+
+    <!-- 下區（佔 10/11 ≈ 91%），內部左右 1:3 -->
+    <div class="bottom-zone">
+      <!-- 左區：學生資訊卡（佔 1/4 = 25%） -->
+      <section class="card student-card">
+        <div class="card-head">
+          <span class="card-tag">學生資訊</span>
+          <div class="card-avatar-wrap"><img id="userImg" src="assets/boy_01.svg" alt="avatar"></div>
+        </div>
+        <div class="card-body">
+          <p class="user_name"><span id="stuName">　　　</span><span class="user_id_num" id="stuId">---</span></p>
+          <div class="ant-row" style="margin: -8px -12px 8px;">
+            <div class="ant-col ant-col-12" style="padding: 8px 12px;"><div class="score E" id="scoreA" title="英文/讀經">0</div></div>
+            <div class="ant-col ant-col-12" style="padding: 8px 12px;"><div class="score B" id="scoreB" title="閱讀">0</div></div>
+            <div class="ant-col ant-col-12" style="padding: 8px 12px;"><div class="score C" id="scoreC" title="跑步">0</div></div>
+            <div class="ant-col ant-col-12" style="padding: 8px 12px;"><div class="score D" id="scoreD" title="榮譽">0</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 右區：排行榜（佔 3/4 = 75%） -->
+      <section class="card leaderboard-card">
+        <div class="card-head">
+          <span class="card-tag">排行榜 Top 10</span>
+        </div>
+        <div class="card-body">
+          <div class="scoring" id="scoring"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- 底部跑馬燈 -->
+  <div class="banner-shell">
+    <div class="banner-track" id="bannerTrack">
+      <div class="banner-slide"><img src="assets/banner-splash.svg" alt="banner"></div>
     </div>
   </div>
-
-  <!-- 排行榜主區（原版 scoring） -->
-  <div class="scoring" id="scoring" style="height: 947px;"></div>
-
-  <!-- 跑馬燈（原版 banner） -->
-  <div id="bannerWrap"><img id="bannerImg" src="assets/banner-splash.svg" alt=""></div>
 
   <!-- 狀態提示 -->
   <div class="source-tag" id="sourceTag"></div>
