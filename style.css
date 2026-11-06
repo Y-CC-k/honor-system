@@ -1,8 +1,8 @@
 /* ==========================================================================
    榮譽積點管理系統 — 原站樣式保留版
    佈局：上下區塊 1:10
-   上區：標題 + 個人成績 + 跑馬燈圖（僅一張）
-   下區：四個排行榜面板平分（英文/閱讀/跑步/榮譽）
+   上區：個人資訊卡（靠卡查詢顯示）
+   下區：四個排行榜面板由左至右橫向平分（英文/閱讀/跑步/榮譽）
    參考原站 static/css/main.8b705911.css 中 Search/排行榜相關規則
    ========================================================================== */
 html, body, #app {
@@ -31,24 +31,24 @@ html, body, #app {
   overflow: hidden;
 }
 
-/* 上區（佔 1 份，約 9%）：左邊個人成績，右邊標題 + 跑馬燈圖 */
+/* 上區（佔 1 份，約 9%）：個人資訊卡（佔滿寬度） */
 .top-zone {
   flex: 1;
   display: flex;
-  flex-direction: row;
-  gap: 12px;
+  align-items: center;
+  justify-content: center;
   padding: 6px 16px;
   overflow: hidden;
   background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, transparent 100%);
-  align-items: stretch;
 }
 
-/* 上區左邊：個人成績卡 */
+/* 個人資訊卡（原版 scoring_user） */
 .student-card {
-  flex: 0 0 42%;
+  flex: 1;
   min-height: 0;
   margin: 0;
   height: auto;
+  max-width: 100%;
 }
 .student-card .card-head { justify-content: flex-start; gap: 14px; }
 .student-card .card-body { padding: 12px 16px; gap: 8px; display: flex; flex-direction: column; }
@@ -61,67 +61,6 @@ html, body, #app {
 .scoring_user .user_img { width: 22%; }
 .scoring_user .user_img img { width: 95%; }
 .scoring_user .user_info { width: 78%; display: flex; flex-direction: column; justify-content: center; }
-.user_name {
-  background: radial-gradient(ellipse at bottom, #000, transparent, transparent);
-  -webkit-background-clip: text; background-clip: text;
-  color: #091d55;
-  font-size: 6vw; margin-bottom: .5em; font-weight: 700;
-}
-.user_id_num {
-  -webkit-background-clip: text; background-clip: text;
-  color: #46b59b; font-size: 2vw; margin-left: 1em;
-}
-
-/* 分數格（原版 .score） */
-.score {
-  padding: 1vw 1vw 5vw 15vw !important;
-  font-size: 3vw;
-  font-family: "Arial Black", Arial, sans-serif;
-  color: #ff0;
-  text-shadow: 2px 2px 0 #eb452b, 4px 4px 6px #040404;
-}
-
-/* 上區右邊：標題 + 跑馬燈圖 */
-.top-right {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-/* 上區內部：標題列 */
-.top-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
-}
-.top-title {
-  font-family: "Titillium Web", "Noto Sans TC", sans-serif;
-  font-size: clamp(18px, 1.125rem, 3vw);
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  color: #ffffff;
-}
-.top-subtitle {
-  font-size: clamp(11px, 0.6875rem, 12px);
-  color: #b8a8a8;
-  font-family: "Noto Sans TC", sans-serif;
-  margin: 0;
-}
-
-/* 上區：跑馬燈圖（僅顯示一張，不重複） */
-.top-banner {
-  flex-shrink: 0;
-  display: flex;
-  justify-content: center;
-}
-.top-banner img {
-  max-width: 90%;
-  height: auto;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6));
-}
 .user_name {
   background: radial-gradient(ellipse at bottom, #000, transparent, transparent);
   -webkit-background-clip: text; background-clip: text;
