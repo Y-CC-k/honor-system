@@ -2,104 +2,6 @@
    榮譽積點管理系統 — 原站樣式保留版
    參考原站 static/css/main.8b705911.css 中 Search/排行榜相關規則
    ========================================================================== */
-
-/* ===== 排版系統 Typography ===== */
-:root {
-  --font-heading: "Titillium Web", "Noto Sans TC", sans-serif;
-  --font-body:    "Noto Sans TC", "Microsoft JhengHei", "PMingLiU", sans-serif;
-  --font-score:   "Arial Black", "Titillium Web", sans-serif;
-
-  --fs-display: clamp(20px, 1.25rem, 4vw);
-  --fs-h1:      clamp(18px, 1.125rem, 2.625rem);
-  --fs-body:    clamp(14px, 1rem, 1.125rem);
-  --fs-caption: clamp(11px, 0.6875rem, 0.875rem);
-  --fs-score:   clamp(24px, 3vw, 42px);
-
-  --lh-title:   1.1;
-  --lh-body:    1.5;
-  --lz-tight:   -0.02em;
-  --lz-wide:    0.05em;
-}
-
-/* 品牌標題 */
-.shell-main {
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-size: var(--fs-display);
-  line-height: var(--lh-title);
-  letter-spacing: var(--lz-tight);
-  color: #ffffff;
-}
-
-/* 學生姓名（最大字） */
-.stu-name {
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-size: var(--fs-score);
-  line-height: var(--lh-title);
-  letter-spacing: var(--lz-tight);
-  color: #ffffff;
-  background: linear-gradient(135deg, #fff, #7ecbff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* 區塊標籤（學生資訊 / 排行榜） */
-.card-tag {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: var(--fs-caption);
-  line-height: 1.4;
-  letter-spacing: var(--lz-wide);
-  text-transform: uppercase;
-  color: #ffd166;
-}
-
-/* 學號 / 次要資訊 */
-.value, .ranking_id_num {
-  font-family: var(--font-body);
-  font-size: var(--fs-body);
-  letter-spacing: var(--lz-wide);
-  color: #46b59b;
-}
-
-/* 分數數字（最醒目） */
-.score-num {
-  font-family: var(--font-score);
-  font-weight: 900;
-  font-size: var(--fs-score);
-  line-height: 1;
-  letter-spacing: 0;
-}
-
-/* 排行榜姓名 */
-.ranking_name {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: clamp(14px, 1.26rem, 20.2px);
-  line-height: 1;
-  color: #ffffff;
-}
-
-/* 行高與字距規則 */
-h1, .stu-name, .shell-main {
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-p, .user_name, .stu-meta {
-  line-height: 1.5;
-  letter-spacing: 0;
-}
-.card-tag, .value, .ranking_id_num {
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-.score-num, .num {
-  line-height: 1;
-  letter-spacing: 0;
-}
-
-/* ===== 原站結構樣式 ===== */
 html, body, #app {
   display: flex;
   flex: 1;
@@ -138,11 +40,8 @@ html, body, #app {
 /* 分數格（原版 .score） */
 .score {
   padding: 1vw 1vw 5vw 15vw !important;
-  font-family: var(--font-score);
-  font-weight: 900;
-  font-size: var(--fs-score);
-  line-height: 1;
-  letter-spacing: 0;
+  font-size: 3vw;
+  font-family: "Arial Black", Arial, sans-serif;
   color: #ff0;
   text-shadow: 2px 2px 0 #eb452b, 4px 4px 6px #040404;
 }
