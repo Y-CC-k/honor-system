@@ -43,7 +43,7 @@ on conflict (school_student_school_id, school_student_stu_id) do nothing;
 insert into points (school_point_id, school_point_student_id, school_point_group_id, school_point_point)
 select
   gen_random_uuid(),
-  s.school_student_id,
+  st.school_student_id,
   g.school_group_id,
   s.pt_point
 from (
