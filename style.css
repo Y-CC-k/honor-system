@@ -249,7 +249,6 @@ html, body, #app {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
   overflow: hidden;
-  position: relative;
 }
 .ranking:hover {
   transform: translateX(6px);
@@ -331,18 +330,6 @@ html, body, #app {
 .ranking:nth-child(even):hover {
   background: rgba(255, 255, 255, 0.14);
 }
-
-/* 原版名次徽章 SVG 背景保留（低 opacity 當裝飾） */
-.ranking::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-size: 60% 60%; background-repeat: no-repeat; background-position: 90% 50%;
-  opacity: 0.35;
-  pointer-events: none;
-  z-index: 0;
-}
-.ranking > * { position: relative; z-index: 1; }
 
 /* 狀態提示 */
 .source-tag {
