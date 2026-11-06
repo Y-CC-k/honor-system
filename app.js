@@ -157,7 +157,6 @@
         var rank = i + 1;
         var row = document.createElement("div");
         row.className = "ranking rank-" + rank;
-        row.style.backgroundImage = "url(assets/bk-" + (rank < 10 ? "0" : "") + rank + ".svg)";
         var medal = "";
         if (rank === 1) medal = '<div class="medal gold">🥇</div>';
         else if (rank === 2) medal = '<div class="medal silver">🥈</div>';
